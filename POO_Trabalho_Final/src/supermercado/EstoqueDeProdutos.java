@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package supermercado;
 
 import java.util.Iterator;
@@ -172,7 +167,7 @@ public class EstoqueDeProdutos {
         return 0.0;
     }
     
-    //Verifica s eexiste o produto no estoque, caso não exista, retorna null
+   
     public static Produto seekProduto(String codigo) {
         Map<String, List<Produto>> temp = estoque.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e-> new LinkedList(e.getValue())));
         if(temp.containsKey(codigo)){
@@ -197,7 +192,7 @@ public class EstoqueDeProdutos {
         return null;
     }
     
-    //método que verifica se tem o produto no estoque ou se existe a quantidade desejada do mesmo, caso alguma dessas afirmações seja falsa, ele retorna null
+   
     public static boolean produtoParaCompra(String codigo, double quantidade, Boolean validarQuantidade){
         //Verifica se existe o produto no estoque e se possui a quantidade esperada
         boolean retorno = false;
@@ -287,8 +282,7 @@ public class EstoqueDeProdutos {
                 valor_quilo, qtd_quilo);
         return pdtQuilo;
     }
-     
-     // Método responsável por criar o estoque inicial de produtos. Alimentar o sistema.
+    
     public static void Feed(){
            System.out.println("#################################################################");
            System.out.println("#              CARGA INICIAL DO ESTOQUE DE PRODUTOS             #");
@@ -366,13 +360,12 @@ public class EstoqueDeProdutos {
         System.out.println("#################################################################");
     }
     
-    // Método responsável por criar uma cópia do estoque de produtos para que o gerente 
-    // possa emitir o relatório de estoque inicial x estoque final
+    
     public static void copiarEstoque(){
         copiaDoEstoque = estoque.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e-> new LinkedList(e.getValue())));
     }
     
-    // Método responsável por chamar a exibição do estoque inicial.
+    
     public static void exibirCopiaInicialDoEstoque(){
         mostrarEstoque(2);
     }
