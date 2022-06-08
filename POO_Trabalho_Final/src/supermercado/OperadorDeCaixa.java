@@ -19,7 +19,7 @@ public class OperadorDeCaixa extends Funcionario  {
         System.out.println("#####################################################################");
     }
 
-    // Remover produto deve ser chamado ao efetuar venda
+   
     @Override
     public void removerProduto(String codigo, double quantidade) {
         EstoqueDeProdutos.removerProduto(codigo, quantidade);
