@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class EstoqueDeProdutos {
-    // key = codigo do produto , value = lista com a quantidade do mesmo produto em estoque
+    
     public static Map<String, List<Produto>> estoque = new LinkedHashMap<String, List<Produto>>();;
     private static Map<String, List<Produto>> copiaDoEstoque;
     private static Produto p;
@@ -78,7 +78,7 @@ public class EstoqueDeProdutos {
                 for (int i = 0; i < quantidade; i++) {
                     if(produtosDoCodigo.size() > 0 && temp > 0) {                
                         produtosDoCodigo.remove(produtosDoCodigo.get(0));
-                        //System.out.println("Removendo um produto de codigo: " + codigo);
+                        
                         temp--;
                     }
                     else {
