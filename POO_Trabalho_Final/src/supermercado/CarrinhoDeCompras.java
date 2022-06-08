@@ -139,8 +139,7 @@ public class CarrinhoDeCompras{
         }
         Utilitario.Continuar();
     }
-    
-    //Verifica se o carrinho de compras está vazio
+   
     public boolean verificaCarrinho(){
         return this.produtosCarrinho.size() > 0 ? true : false;
     }
