@@ -16,7 +16,6 @@ public class Cliente {
         return carrinho;
     }
 
-    //Para realizar a compra, o cliente escolhe um caixa disponível
     public void realizarCompra(Caixa caixa){
         caixa.iniciarVenda(this);
     }
