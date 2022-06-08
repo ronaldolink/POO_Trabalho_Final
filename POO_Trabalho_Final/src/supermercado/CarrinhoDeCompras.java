@@ -11,7 +11,7 @@ import java.util.Map;
 import static supermercado.EstoqueDeProdutos.estoque;
 
 public class CarrinhoDeCompras{
-    //private ArrayList<Produto> produtosCarrinho;
+   
     private Map<String, List<Produto>> produtosCarrinho;
     private double valorCompra;
     
@@ -146,10 +146,7 @@ public class CarrinhoDeCompras{
     
      public double calcularPrecoCarrinho(){
         
-        // Calcular o valor total da compra usando o somatorio de:
-        // - calcularValorPorItem
-        // - calcularValorPorPeso
-        // Calcular troco do cliente se pagar em $
+        
        double valorTotal = 0;
        Iterator itMap = produtosCarrinho.keySet().iterator();
        List<Produto> list;
@@ -164,18 +161,17 @@ public class CarrinhoDeCompras{
            while(produtos.hasNext()){
                Produto produtoList = (Produto) produtos.next();
 
-               //Fazer a variavel "valorTotal" receber o valor do calculo por kilo
+              
                 if(produtoList instanceof ProdutoQuilo){
-                    //Pega a quantidade de kilos e o valor do peso para que a balança possa calcular
+                    
                     ProdutoQuilo produtokg = (ProdutoQuilo) list.get(0);
                     valorPeso = produtokg.getValor();
                     ktdKilo = produtokg.getQtdQuilos();
                     valorTotal += Balanca.calcularValorPorPeso(valorPeso,ktdKilo);
                 }
-                //Fazer a variavel "valorTotal" receber o valor do calculo por Unidade
+                
                 else if(produtoList instanceof ProdutoUnitario){
-                    //QUAL A MELHOR FORMA DE CHAMAR O MÉTODO calcularValorPorUnidade chamar da balança ou do caixa???
-                     quantidade = list.size();
+                    
                      ProdutoUnitario produtounit = (ProdutoUnitario) list.get(0);
                      valorTotal += Balanca.calcularValorPorItem(produtounit.getValor(), quantidade);
                 } 
