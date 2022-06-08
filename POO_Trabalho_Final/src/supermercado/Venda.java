@@ -47,7 +47,7 @@ public class Venda {
         return dados;
     }
     
-    //Se ocorrer tudo OK com a forma de pagamento, retorna true
+    
     public boolean formaDePagamento(){
         Scanner scan = new Scanner(System.in);
         double dinheiro;
