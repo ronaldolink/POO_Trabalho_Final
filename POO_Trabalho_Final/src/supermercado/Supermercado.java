@@ -188,7 +188,7 @@ public class Supermercado{
                                                 cli.getCarrinho().devolverProdutosCarrinho();
                                                 break;
                                             }
-                                        //busca o produto pelo código passado pelo cliente, verificando a disponibilidade do mesmo no método seekProduto
+                                        
                                         Produto p = EstoqueDeProdutos.seekProduto(codigo);
                                         if(p != null){
 
@@ -232,7 +232,7 @@ public class Supermercado{
                                     sairMenuCliente = false;
                                     break;
                                 case 2:
-                                    // só prossegue com a listagem dos caixas se o cliente possuir itens no carrinho
+                                    
                                     if (cli.getCarrinho().verificaCarrinho()){
                                         int opcaoCaixaCompra;
                                         List<Caixa> caixasDisponiveis = ObtenhaCaixasDisponiveis();
@@ -293,19 +293,19 @@ public class Supermercado{
         }while(!sairMenu);
     }
    
-    // Método responsável por mostrar a mensagem de saudação do sistema.
+    
     private static void Saudacao() {
         Utilitario.ImprimaMensagem("#   BEM VINDO AO NOSSO SISTEMA DE COMPRA E VENDA!!   #");
         Utilitario.Continuar();
     }
 
-    // Método responsável por realizar a carga iniicial do estoque de produtos.
+    
     private static void Feed() {
         EstoqueDeProdutos.Feed();
         Utilitario.Continuar();
     }
     
-    // Método responsável por criar os funcionários do sistema.
+    
     private static void CriarFuncionarios(){
         Gerente gerente = new Gerente("GERENTE DO MERCADO", "admin", "admin" );
         OperadorDeCaixa funcionario1 = new OperadorDeCaixa("GABRIEL", "f1", "1111" );
@@ -331,7 +331,7 @@ public class Supermercado{
         caixas.add(c3); //[2]
     }
     
-    // Método responsável por controlar o menu Gerente
+    
     private static void ControleMenuGerente(Gerente gerente, int tentativas, int chances) {
         Utilitario.ImprimaMensagem("#                             LOGIN                             #");
         Boolean acessou = false;
@@ -358,7 +358,7 @@ public class Supermercado{
         }
     }
     
-    // Método com as opcoes do menu do gerente
+    
     private static void MenuGerente(Gerente gerente) {
         Boolean sairMenuGer = false;
         do{
@@ -372,10 +372,10 @@ public class Supermercado{
                 case 2: 
                     MenuGerenteRemoverProduto(gerente);
                     break;
-                case 3: // emitir relatorio estoque
+                case 3: 
                     gerente.emitirRelatorioDeEstoque();
                     break;
-                case 4: // emitir relatorio vendas
+                case 4: 
                     gerente.emitirRelatorioDeVendas(caixas);
                     break;
                 case 0:
@@ -389,7 +389,7 @@ public class Supermercado{
     }
 
     private static void MenuGerenteRemoverProduto(Gerente gerente) {
-        // remover produto
+        
         Utilitario.ImprimaMensagem("#                        REMOVER PRODUTOS                       #");
         System.out.println("DIGITE O CÓDIGO DO PRODUTO QUE SERÁ REMOVIDO:");
         String codigoProduto  = scanner.next();
@@ -412,7 +412,7 @@ public class Supermercado{
             if(p instanceof ProdutoQuilo){
                 System.out.println("DIGITE A QUANTIDADE DE KILOS DE " +p.getNome().toUpperCase()+ ": ");
                 double quantidade = scanner.nextDouble();
-                //verifico se tem a quantidade do produto desejado
+                
                 verificacao = EstoqueDeProdutos.produtoParaCompra(codigoProduto, quantidade, false);
                 if(verificacao){
                     ProdutoQuilo pkg = (ProdutoQuilo) p;
@@ -424,14 +424,14 @@ public class Supermercado{
         }
     }
     
-    // Método responsável por mostrar o menu do gerente.
+    
     private static void MostrarMenuGerente(){
         Utilitario.ImprimaMensagem("#                      MENU                          #");
         System.out.println(" ( 1 ) Adicionar produto no estoque \n ( 2 ) Remover produto \n ( 3 ) Emitir relatório de estoque \n ( 4 ) Emitir relatório de vendas \n ( 0 ) Logout ");
         System.out.println();
     }
     
-    // Método responsável por mostrar o menu para o gerente adicionar o produto.
+    
     private static void MenuGerenteAdicionarProduto(Gerente gerente) {
         // adicionar produto
         Boolean sairMenuProduto = false;
@@ -457,7 +457,7 @@ public class Supermercado{
         }while(!sairMenuProduto);
     }
     
-    // Método responsável por mostrar a escolha dos caixas.
+   
     private static void MostrarMenuListaDeCaixas(List<Caixa> caixas){
         Utilitario.ImprimaMensagem("#                           CAIXAS                              #");
         Iterator i = caixas.iterator();
@@ -476,17 +476,17 @@ public class Supermercado{
         System.out.println("####################################################################");
     }
     
-    // Método repsonsável por identificar se existe usuário logado em algum dos caixas.
+    
     private static Caixa FuncionarioLogado(String senha){
         return (Caixa)caixas.stream().filter(c->c.getOperadorCaixa() != null && c.getOperadorCaixa().getSenha().equals(senha)).findFirst().orElse(null);
     }
     
-    // Método responsável por obter a lista de caixas disponíveis.
+    
     private static List<Caixa> ObtenhaCaixasDisponiveis(){
         return caixas.stream().filter(c->c.getOperadorCaixa() != null).collect(Collectors.toList());
     }
     
-    // Método responsável por mostrar caixas com operadores logados.
+    
     private static void MostrarCaixasEmFuncionamento(){
         if (ObtenhaCaixasDisponiveis().isEmpty()) {
             System.out.println("NENHUM CAIXA ESTÁ ATENDENDO NO MOMENTO! ");
@@ -503,7 +503,7 @@ public class Supermercado{
         }
     }
     
-    // Método responsável por apresentar o menu de cadastro de produtos por unidade.
+    
     private static void WizardAddProdutoUnidade(Gerente gerente) {
         Utilitario.ImprimaMensagem("#                    ADICIONANDO PRODUTO                        #");
         System.out.println("CÓDIGO DO PRODUTO:");
@@ -511,8 +511,7 @@ public class Supermercado{
         
         Produto produtoEmEstoque = EstoqueDeProdutos.seekProduto(codigoProduto);
         
-        // Caso o codigo do produto já existir no estoque,
-        // manipulamos o produto, senão adicionamos um novo.
+        
         if (produtoEmEstoque != null) { 
             if (produtoEmEstoque instanceof ProdutoUnitario) {
                 System.out.println("O PRODUTO DE CÓDIGO " + produtoEmEstoque.getCodigo() + "-" + produtoEmEstoque.getNome() + " JÁ ESTÁ CADASTRADO NO ESTOQUE!");
@@ -545,15 +544,14 @@ public class Supermercado{
         }
     }
     
-    // Método responsável por apresentar o menu de cadastro de produtos por quilo.
+   
     private static void WizardAddProdutoQuilo(Gerente gerente) {
         Utilitario.ImprimaMensagem("#                    ADICIONANDO PRODUTO                        #");
         System.out.println("CÓDIGO DO PRODUTO:");
         String codigoProduto  = scanner.next();
         
         Produto produtoEmEstoque = EstoqueDeProdutos.seekProduto(codigoProduto);
-        // Caso o codigo do produto já existir no estoque,
-        // manipulamos o produto, senão adicionamos um novo.
+        
         if (produtoEmEstoque != null) { 
             if (produtoEmEstoque instanceof ProdutoQuilo) {
                 System.out.println("O PRODUTO DE CÓDIGO " + produtoEmEstoque.getCodigo() + "-" + produtoEmEstoque.getNome() + " JÁ ESTÁ CADASTRADO NO ESTOQUE!");
